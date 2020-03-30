@@ -1,0 +1,105 @@
+<!DOCTYPE Html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+    <link rel="stylesheet" href="android.css" />
+    <script type="text/javascript" src="database.js"></script>
+</head>
+<body>
+    <!-- Main Page -->
+    <div data-role="main_page" id="main">
+        <div data-role="content" id="content">
+            <div id="score"></div>
+            <div id="men2"></div>
+            <div id="men3"></div>
+            <div id="preacher"></div>
+        </div>
+        <div data-role="controlgroup" data-type="horizontal">
+            <a id="btn1" data-role="button"></a>
+            <a id="btn2" data-role="button"></a>
+            <a id="btn3" data-role="button"></a>
+        </div>
+    </div>
+
+    <!-- Settings Page 
+    <div data-role="settings_page" id="settings">
+        <div data-role="header">
+            <a id="btnHome" data-icon="home">Home</a>
+            <h1>Settings</h1>
+        </div>
+        <div class="ui-grid-b" style="font-size: 12px">
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-c" style="height: 130px">Speed<p style="font-size: 8px; font-weight: lighter">Controls how fast the scriptures descend to the stony ground.</p>
+                </div>
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-c" style="height: 130px">
+                    <input type="range" name="slider-2" data-name="Speed" id="slider-2" data-highlight="true" min="0" max="100" value="50" data-mini="true" />
+                </div>
+            </div>
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-c" style="height: 130px">Sound<p style="font-size: 8px; font-weight: lighter">Controls the game sound is on/off.</p>
+                </div>
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-c" style="height: 130px">
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                        <legend></legend>
+                        <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6a" data-name="Sound" value="1" checked="checked">
+                        <label for="radio-choice-h-6a">On</label>
+                        <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6b" data-name="Sound" value="0">
+                        <label for="radio-choice-h-6b">Off</label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-c" style="height: 130px">Testament<p style="font-size: 8px; font-weight: lighter">Changes which testament the scriptures are drawn from.</p>
+                </div>
+
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-c" style="height: 130px">
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                        <legend></legend>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" data-name="Testament" value="1">
+                        <label for="radio-choice-h-2a">Old</label>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" data-name="Testament" value="2">
+                        <label for="radio-choice-h-2b">New</label>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" data-name="Testament" value="3" checked="checked">
+                        <label for="radio-choice-h-2c">Both</label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-c" style="height: 160px">Bible Version
+                    <p style="font-size: 8px; font-weight: lighter">Changes which bible version the scriptures are drawn from.</p>
+                </div>
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-c" style="height: 160px">
+                    <fieldset data-role="controlgroup" data-mini="true">
+                        <legend></legend>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="1"  data-name="Bversion" checked="checked"/>
+                        <label for="radio-choice-v-6a">KJV</label>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="2" data-name="Bversion"/>
+                        <label for="radio-choice-v-6b">AKJV</label>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="3" data-name="Bversion"/>
+                        <label for="radio-choice-v-6c">UKJV</label>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6d" value="4" data-name="Bversion"/>
+                        <label for="radio-choice-v-6d">NIV</label>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6e" value="5" data-name="Bversion"/>
+                        <label for="radio-choice-v-6e">DBY</label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <script type="text/javascript" src="angryPreacher.js"></script>
+</body>
+
+</html>

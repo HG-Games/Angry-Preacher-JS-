@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.5" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+    <link rel="stylesheet" href="android.css" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.addEventListener("deviceready", onDeviceReady, true);
+            $("#btnHome").click(function () {
+
+                window.location = "main.html";
+            });
+            db = window.openDatabase("angryPreacher.sqlite", "1.0", "AngryPreacherDB", 1000000);
+        });
+
+        function onDeviceReady() {
+
+
+            $("#slider-2").change(function (event, ui) {
+                setSettings();
+            });
+
+            $("input[type='radio']").bind("change", function (event, ui) {
+                var name = $(this).attr("data-name");
+                var value = $(this).val();
+
+                setSettings(name, value);
+            });
+
+            //Set speed
+            $("#slider-2").val(localStorage.speed).slider("refresh");
+            //Set sound
+
+            if (localStorage.sound == "1") {
+                //  alert("1");
+                $("#radio-choice-h-6a").attr("checked", "checked").checkboxradio("refresh");
+                $("#radio-choice-h-6b").removeAttr("checked").checkboxradio("refresh");
+            }
+            else {
+                //  alert("0");
+                $("#radio-choice-h-6a").removeAttr("checked").checkboxradio("refresh");
+                $("#radio-choice-h-6b").attr("checked", "checked").checkboxradio("refresh");
+            }
+
+            //Set testament
+            switch (localStorage.testament) {
+
+                case "1":
+                    {
+                        $("#radio-choice-h-2a").attr("checked", "checked").checkboxradio("refresh");
+                        $("#radio-choice-h-2b").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-h-2c").removeAttr("checked").checkboxradio("refresh");
+                        break;
+                    }
+                case "2":
+                    {
+                        $("#radio-choice-h-2a").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-h-2b").attr("checked", "checked").checkboxradio("refresh");
+                        $("#radio-choice-h-2c").removeAttr("checked").checkboxradio("refresh");
+                        break;
+                    }
+                case "3":
+                    {
+                        $("#radio-choice-h-2a").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-h-2b").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-h-2c").attr("checked", "checked").checkboxradio("refresh");
+                        break;
+                    }
+            }
+
+            switch (localStorage.bversion) {
+                case "1":
+                    {
+                        $("#radio-choice-v-6a").attr("checked", "checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6b").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6c").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6d").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6e").removeAttr("checked").checkboxradio("refresh");
+                        break;
+                    }
+                case "2":
+                    {
+                        $("#radio-choice-v-6b").attr("checked", "checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6a").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6c").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6d").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6e").removeAttr("checked").checkboxradio("refresh");
+                        break;
+                    }
+                case "3":
+                    {
+                        $("#radio-choice-v-6c").attr("checked", "checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6b").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6a").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6d").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6e").removeAttr("checked").checkboxradio("refresh");
+                        break;
+                    }
+
+                case "4":
+                    {
+                        $("#radio-choice-v-6d").attr("checked", "checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6b").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6c").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6a").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6e").removeAttr("checked").checkboxradio("refresh");
+                        break;
+                    }
+                case "5":
+                    {
+                        $("#radio-choice-v-6e").attr("checked", "checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6b").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6c").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6d").removeAttr("checked").checkboxradio("refresh");
+                        $("#radio-choice-v-6a").removeAttr("checked").checkboxradio("refresh");
+                        break;
+                    }
+            }
+        }
+
+        //Get Settings
+        function getSettings() {
+            db.transaction(function (cmd) {
+
+                cmd.executeSql('SELECT * from settings', [], function (cmd, results) {
+                    localStorage.speed = results.rows.item(0).speed;
+                    localStorage.sound = results.rows.item(0).sound;
+                    localStorage.testament = results.rows.item(0).testament;
+                    localStorage.bversion = results.rows.item(0).bversion;
+                    console.log("Settings loaded.");
+                    console.log("Testament = " + localStorage.testament);
+                }, null);
+            });
+        }
+
+        //Set Settings
+        function setSettings(name, value) {
+
+            switch (name) {
+                case "Sound":
+                    {
+                        localStorage.sound = value;
+                        break;
+                    }
+                case "Speed":
+                    {
+                        localStorage.speed = value;
+                        break;
+                    }
+                case "Testament":
+                    {
+                        localStorage.testament = value;
+                        break;
+                    }
+                case "Bversion":
+                    {
+                        localStorage.bversion = value;
+                        break;
+                    }
+            }
+
+            db.transaction(function (cmd) {
+                cmd.executeSql("UPDATE settings SET" +
+                    " Speed = " + localStorage.speed +
+                    ",Sound = " + localStorage.sound +
+                    ",Testament = " + localStorage.testament +
+                    ",Bversion = " + localStorage.bversion, [], function (cmd, results) {
+                     //   alert("Settings saved.");
+                        console.log("Settings saved.");
+                        console.log("Testament = " + localStorage.testament);
+                    }, null);
+            }, updateError, updateSuccess);
+        }
+
+        // Transaction error callback
+        //
+        function updateError(err) {
+            alert("Error updating SQL: " + err.message);
+        }
+
+        // Transaction error callback
+        //
+        function updateSuccess() {
+
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="content">
+        <div data-role="header">
+            <a id="btnHome" data-icon="home">Home</a>
+            <h1>Settings</h1>
+        </div>
+        <div class="ui-grid-b" style="font-size: 12px">
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-c" style="height: 130px">Speed<p style="font-size: 8px; font-weight: lighter">Controls how fast the scriptures descend to the stony ground.</p>
+                </div>
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-c" style="height: 130px">
+                    <input type="range" name="slider-2" data-name="Speed" id="slider-2" data-highlight="true" min="0" max="100" value="50" data-mini="true" />
+                </div>
+            </div>
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-c" style="height: 130px">Sound<p style="font-size: 8px; font-weight: lighter">Controls the game sound is on/off.</p>
+                </div>
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-c" style="height: 130px">
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                        <legend></legend>
+                        <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6a" data-name="Sound" value="1" checked="checked">
+                        <label for="radio-choice-h-6a">On</label>
+                        <input type="radio" name="radio-choice-h-6" id="radio-choice-h-6b" data-name="Sound" value="0">
+                        <label for="radio-choice-h-6b">Off</label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-c" style="height: 130px">Testament<p style="font-size: 8px; font-weight: lighter">Changes which testament the scriptures are drawn from.</p>
+                </div>
+
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-c" style="height: 130px">
+                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                        <legend></legend>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2a" data-name="Testament" value="1">
+                        <label for="radio-choice-h-2a">Old</label>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2b" data-name="Testament" value="2">
+                        <label for="radio-choice-h-2b">New</label>
+                        <input type="radio" name="radio-choice-h-2" id="radio-choice-h-2c" data-name="Testament" value="3" checked="checked">
+                        <label for="radio-choice-h-2c">Both</label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="ui-block-a">
+                <div class="ui-bar ui-bar-c" style="height: 160px">Bible Version
+                    <p style="font-size: 8px; font-weight: lighter">Changes which bible version the scriptures are drawn from.</p>
+                </div>
+            </div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-c" style="height: 160px">
+                    <fieldset data-role="controlgroup" data-mini="true">
+                        <legend></legend>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="1"  data-name="Bversion" checked="checked"/>
+                        <label for="radio-choice-v-6a">KJV</label>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="2" data-name="Bversion"/>
+                        <label for="radio-choice-v-6b">AKJV</label>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="3" data-name="Bversion"/>
+                        <label for="radio-choice-v-6c">UKJV</label>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6d" value="4" data-name="Bversion"/>
+                        <label for="radio-choice-v-6d">NIV</label>
+                        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6e" value="5" data-name="Bversion"/>
+                        <label for="radio-choice-v-6e">DBY</label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <!-- /grid-c -->
+    </div>
+</body>
+</html>

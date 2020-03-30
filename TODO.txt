@@ -1,0 +1,12 @@
+﻿1. Create and Save Settings in DB. - DONE
+2. Write Speed Code - DONE
+3. Create men code
+4. Add new vs old testament filter code
+5. Add different bible versions
+
+
+
+Outsource
+Get Splash Screen created (Play. Settings)
+Get angry preacher animated gif. (No!, Hallalujah!)
+Get game over screen created (Game over. Try Again. Study to show thyself approved unto God.)

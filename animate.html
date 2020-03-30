@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+</script>
+<script>
+$(document).ready(function()
+  {
+  $("#btn1").click(function(){
+    $("#box").animate({marginTop:"300px"}, 10000);
+  });
+  $("#btn2").click(function(){
+    $("#box").animate({marginTop:"10px"});
+  });
+});
+</script>
+
+<style>
+#octagon {
+	width: 100px;
+	height: 100px;
+	background: red;
+	position: relative;
+}
+
+#octagon:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-bottom: 29px solid red;
+	border-left: 29px solid #eee;
+	border-right: 29px solid #eee;
+	width: 42px;
+	height: 0;
+}
+
+#octagon:after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	border-top: 29px solid red;
+	border-left: 29px solid #eee;
+	border-right: 29px solid #eee;
+	width: 42px;
+	height: 0;
+}
+</style>
+</head>
+<body style="background-color:blue">
+
+<button id="btn1">Animate height</button>
+<button id="btn2">Reset height</button>
+<div id="box" style="background-image:url('cloud.png'); width:260px; height:200px; ">
+<div style="width:145px; height:105px; position:relative; left:50px; top:50px; border: 1px solid red">
+
+hello</div></div>
+</body>
+</html>

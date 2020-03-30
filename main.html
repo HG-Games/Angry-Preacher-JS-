@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.5" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+    <style>
+        #content
+        {
+            height: 638px;
+            width: 360px;
+          /*  border: solid 1px red;*/
+        }
+
+        
+    </style>
+    <script>
+        $(document).ready(function () {
+            document.addEventListener("deviceready", onDeviceReady, true);
+            
+        });
+
+        function onDeviceReady() {
+            $("#btnPlayGame").click(function () {
+
+                window.location = "index.html";
+            });
+
+            $("#btnSettings").click(function () {
+
+                window.location = "settings.html";
+            });
+            
+        }
+
+    </script>
+</head>
+<body>
+<div id="content"style="background-image: url('splash.png')">
+    <div style="position:absolute; top: 500px; left: 100px">
+           <a id="btnPlayGame" style="width:150px" data-role="button" data-theme="a">Play Game</a>
+           <a id="btnSettings" style="width:150px" data-role="button" data-theme="a">Settings</a></div>
+</div>
+</body>
+</html>
